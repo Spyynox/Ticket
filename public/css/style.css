@@ -1,5 +1,6 @@
 .login  {
     margin-left: 2%;
+    margin-top: 5%;
 }
 
 .login button {
@@ -16,4 +17,32 @@
 
 .inscription label {
     margin-top: 2%;
+}
+
+.ticket h1 {
+    text-align: center;
+}
+
+.alert-rouge {
+    /* margin-top: 2%; */
+    position: absolute;
+}
+
+.form_alert-rouge {
+    position: absolute;
+    top: 13%;
+    left: 2%;
+}
+
+
+
+.delete a {
+    background: #E12E1C;
+    color: white !important;
+    height: 100px !important;
+}
+
+.edit a {
+    background: #D4860B;
+    color: white !important;
 }

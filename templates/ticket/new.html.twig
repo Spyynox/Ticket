@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ticket{% endblock %}
+
+{% block body %}
+    <div class="ticket">
+        <h1>Créer un nouveau ticket</h1>
+    </div>
+
+    <div class="form-groug">
+        {# {{ include('ticket/_form.html.twig') }} #}
+    </div>
+        {{ form_start(form) }}
+
+
+        {{ form_row(form.title) }}
+
+        {{ form_row(form.text) }}
+
+        {# {% if is_granted('ROLE_ADMIN') %} #}
+        {{ form_row(form.user, {'label': 'gvhgv'}) }}
+        {# {% endif %} #}
+
+        <button type="submit" class="btn btn-success">Créer</button>
+        
+        {{ form_end(form) }}
+    
+    <a href="{{ path('ticket_index') }}">Retournez à votre liste de ticket(s)</a>
+{% endblock %}
