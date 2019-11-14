@@ -18,9 +18,6 @@ class TicketType extends AbstractType
             ->add('title', TextType::class,  [
                 'label' => 'Titre',
             ])
-            ->add('text', TextareaType::class,  [
-                'label' => 'Contenu de votre ticket',
-            ])
             ->add('user', EntityType::class,  [
                 'class' => 'App\Entity\User',
                 // 'label' => 'Assigné l\'utilisateur: ',
@@ -28,6 +25,8 @@ class TicketType extends AbstractType
                 'placeholder' => '',
                 'empty_data' => null,
                 'required' => false,
+                'expanded' => true,
+                'multiple' => true,
             ])
         ;
     }

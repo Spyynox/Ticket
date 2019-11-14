@@ -13,31 +13,28 @@
                 <thead>
                     <tr>
                         <th>Titre</th>
-                        <th>Contenu de votre ticket</th>
                         <th>Envoyer le</th>
-                        <th>Pseudo</th>
+                        <th>Personne assigné</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for ticket in tickets %}
-                    <tr>
-                        <td>{{ ticket.title }}</td>
-                        <td>{{ ticket.text }}</td>
-                        <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
-                        <td>{{ ticket.user}}</td>
-                        <td class="edit">
-                            <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">Modifier</a>
-                        </td>
-                        <td class="delete">
-                            <a href="{{ path('ticket_delete', {'id': ticket.id}) }}">Supprimer</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">Aucun ticket trouvé</td>
-                    </tr>
+                {% for user in users %}
+                    {% if ticket.user.id == user.id  %}
+                        <tr>
+                            <td>{{ ticket.title }}</td>
+                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+                            <td class="edit">
+                                <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">Modifier</a>
+                            </td>
+                            <td class="delete">
+                                <a href="{{ path('ticket_delete', {'id': ticket.id}) }}">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>

@@ -15,10 +15,8 @@
 
         {{ form_row(form.title) }}
 
-        {{ form_row(form.text) }}
-
         {# {% if is_granted('ROLE_ADMIN') %} #}
-        {{ form_row(form.user, {'label': 'gvhgv'}) }}
+        {{ form_row(form.user, {'label': 'Personne à qui vous voulez assigner'}) }}
         {# {% endif %} #}
 
         <button type="submit" class="btn btn-success">Créer</button>
