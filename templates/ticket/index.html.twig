@@ -22,10 +22,11 @@
                 <tbody>
                 {% for ticket in tickets %}
                 {% for user in users %}
-                    {% if ticket.user.id == user.id  %}
+                    {% if ticket.user.first.id == user.id  %}
                         <tr>
                             <td>{{ ticket.title }}</td>
                             <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+                            <td>{{ user.username }}</td>
                             <td class="edit">
                                 <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">Modifier</a>
                             </td>
@@ -45,25 +46,24 @@
                 <thead>
                     <tr>
                         <th>Titre</th>
-                        <th>Contenu de votre ticket</th>
                         <th>Envoyer le</th>
                         <th>Pseudo</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for ticket in tickets %}
-                    {% if ticket.user == app.user %}
+                {% for user in users %}
+                <pre>
+                    {{ dump(user) }}
+                </pre>
+                    {% if ticket.user.first.id == user.id  %}
                         <tr>
                             <td>{{ ticket.title }}</td>
-                            <td>{{ ticket.text }}</td>
                             <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
-                            <td>{{ ticket.user}}</td>
+                            <td>{{ user.username }}</td>
                         </tr>
                     {% endif %}
-                {% else %}
-                    <tr>
-                        <td colspan="5">Aucun ticket trouvé</td>
-                    </tr>
+                {% endfor %}
                 {% endfor %}
                 </tbody>
             </table>
