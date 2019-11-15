@@ -39,6 +39,8 @@ class TicketController extends AbstractController
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
+        $user = $this->getUser();
+        $ticket->setCurrentuser($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ticket->setCreatedAt(new \DateTime);

@@ -38,6 +38,12 @@ class Ticket
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="curenttickets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $currentuser;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -126,6 +132,18 @@ class Ticket
         if ($this->user->contains($user)) {
             $this->user->removeElement($user);
         }
+
+        return $this;
+    }
+
+    public function getCurrentUser(): ?User
+    {
+        return $this->currentuser;
+    }
+
+    public function setCurrentUser(?User $currentuser): self
+    {
+        $this->currentuser = $currentuser;
 
         return $this;
     }

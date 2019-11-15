@@ -28,6 +28,11 @@ class TicketType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ])
+            // ->add('user', EntityType::class,  [
+            //     'class' => 'App\Entity\User',
+            //     // 'label' => 'Assigné l\'utilisateur: ',
+            //     'choice_label' => 'username',
+            // ])
         ;
     }
 

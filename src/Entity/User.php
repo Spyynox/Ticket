@@ -47,10 +47,16 @@ class User implements UserInterface
      */
     private $tickets;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="currentuser")
+     */
+    private $curenttickets;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->curenttickets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +191,37 @@ class User implements UserInterface
         if ($this->tickets->contains($ticket)) {
             $this->tickets->removeElement($ticket);
             $ticket->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getCurenttickets(): Collection
+    {
+        return $this->curenttickets;
+    }
+
+    public function addCurentticket(Ticket $curentticket): self
+    {
+        if (!$this->curenttickets->contains($curentticket)) {
+            $this->curenttickets[] = $curentticket;
+            $curentticket->setCurrentuser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCurentticket(Ticket $curentticket): self
+    {
+        if ($this->curenttickets->contains($curentticket)) {
+            $this->curenttickets->removeElement($curentticket);
+            // set the owning side to null (unless already changed)
+            if ($curentticket->getCurrentuser() === $this) {
+                $curentticket->setCurrentuser(null);
+            }
         }
 
         return $this;
