@@ -9,7 +9,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ path('ticket_index') }}">Ticket</a>
+            <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -18,16 +18,22 @@
                 <ul class="navbar-nav mr-auto">
                     {% if not app.user %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            <a class="nav-link login_app" href="{{ path('app_login') }}">Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                            <a class="nav-link registration_app" href="{{ path('app_register') }}">Inscription</a>
                         </li>
                     {% endif %}
 
                     {% if app.user %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+                            <a class="nav-link" href="{{ path('ticket_new') }}">Créer un ticket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('ticket_index') }}">Mes tickets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link logout_app" href="{{ path('app_logout') }}">Deconnexion</a>
                         </li>
                     {% endif %}
                 </ul>

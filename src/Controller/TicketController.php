@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Ticket;
+use App\Entity\Message;
 use App\Form\TicketType;
+use App\Form\MessageType;
 use App\Repository\UserRepository;
 use App\Repository\TicketRepository;
 use App\Repository\MessageRepository;
+use PhpParser\Node\Expr\Assign;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,6 +44,7 @@ class TicketController extends AbstractController
         $form->handleRequest($request);
         $user = $this->getUser();
         $ticket->setCurrentuser($this->getUser());
+        $ticket->setUser($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ticket->setCreatedAt(new \DateTime);
@@ -58,14 +62,34 @@ class TicketController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ticket_show", methods={"GET"})
+     * @Route("/{id}", name="ticket_show", methods={"GET","POST"})
      */
-    public function show(Ticket $ticket): Response
+    public function show(Ticket $ticket, Request $request): Response
     {
+        $message = new Message();
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $message->setUser($user);
+        $message->setTicket($ticket);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message->setCreatedAt(new \DateTime);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($message);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('ticket_index');
+        }
+
         return $this->render('ticket/show.html.twig', [
             'ticket' => $ticket,
+            'message' => $message,
+            'form' => $form->createView(),
         ]);
     }
+
+    
 
     /**
      * @Route("/{id}/edit", name="ticket_edit", methods={"GET","POST"})

@@ -43,14 +43,14 @@ class User implements UserInterface
     private $messages;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Ticket", mappedBy="user")
-     */
-    private $tickets;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="currentuser")
      */
     private $curenttickets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="user")
+     */
+    private $tickets;
 
     public function __construct()
     {
@@ -171,34 +171,6 @@ class User implements UserInterface
     /**
      * @return Collection|Ticket[]
      */
-    public function getTickets(): Collection
-    {
-        return $this->tickets;
-    }
-
-    public function addTicket(Ticket $ticket): self
-    {
-        if (!$this->tickets->contains($ticket)) {
-            $this->tickets[] = $ticket;
-            $ticket->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTicket(Ticket $ticket): self
-    {
-        if ($this->tickets->contains($ticket)) {
-            $this->tickets->removeElement($ticket);
-            $ticket->removeUser($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Ticket[]
-     */
     public function getCurenttickets(): Collection
     {
         return $this->curenttickets;
@@ -221,6 +193,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($curentticket->getCurrentuser() === $this) {
                 $curentticket->setCurrentuser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Ticket $ticket): self
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets[] = $ticket;
+            $ticket->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): self
+    {
+        if ($this->tickets->contains($ticket)) {
+            $this->tickets->removeElement($ticket);
+            // set the owning side to null (unless already changed)
+            if ($ticket->getUser() === $this) {
+                $ticket->setUser(null);
             }
         }
 

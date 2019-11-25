@@ -17,10 +17,10 @@ class MessageType extends AbstractType
         $builder
             ->add('text')
             // ->add('created_At')
-            ->add('ticket', EntityType::class, [
-                'class' => Ticket::class,
-                'choice_label' => 'title'
-            ])
+            // ->add('ticket', EntityType::class, [
+            //     'class' => Ticket::class,
+            //     'choice_label' => 'title'
+            // ])
             // ->add('user', EntityType::class, [
             //     'class' => User::class,
             //     'choice_label' => 'username'

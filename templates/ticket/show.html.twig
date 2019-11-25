@@ -8,16 +8,8 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
                 <th>Title</th>
                 <td>{{ ticket.title }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ ticket.text }}</td>
             </tr>
             <tr>
                 <th>Created_At</th>
@@ -25,6 +17,18 @@
             </tr>
         </tbody>
     </table>
+
+    {% for message in ticket.messages %}
+        <div>
+            <div>Message:</div><br>
+            <div>{{ message }}</div>
+            <hr><br>
+        </div>
+    {% endfor %}
+
+{{ include('message/_form.html.twig') }}
+
+
 
     <a href="{{ path('ticket_index') }}">back to list</a>
 

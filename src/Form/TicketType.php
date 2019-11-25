@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ticket;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,20 +19,14 @@ class TicketType extends AbstractType
             ->add('title', TextType::class,  [
                 'label' => 'Titre',
             ])
-            ->add('user', EntityType::class,  [
-                'class' => 'App\Entity\User',
-                // 'label' => 'Assigné l\'utilisateur: ',
-                'choice_label' => 'username',
-                'placeholder' => '',
-                'empty_data' => null,
-                'required' => false,
-                'expanded' => true,
-                'multiple' => true,
-            ])
             // ->add('user', EntityType::class,  [
-            //     'class' => 'App\Entity\User',
+            //     'class' => User::class,
             //     // 'label' => 'Assigné l\'utilisateur: ',
             //     'choice_label' => 'username',
+            //     // 'empty_data' => null,
+            //     // 'required' => false,
+            //     // 'expanded' => true,
+            //     // 'multiple' => true,
             // ])
         ;
     }

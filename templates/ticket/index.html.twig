@@ -13,8 +13,10 @@
                 <thead>
                     <tr>
                         <th>Titre</th>
-                        <th>Envoyer le</th>
                         <th>Personne assigné</th>
+                        <th>Origine du ticket</th>
+                        <th>Envoyer le</th>
+                        <th>Voir les détails</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
                     </tr>
@@ -22,11 +24,15 @@
                 <tbody>
                 {% for ticket in tickets %}
                 {% for user in users %}
-                    {% if ticket.user.first.id == user.id  %}
+                    {% if ticket.user == user %}
                         <tr>
                             <td>{{ ticket.title }}</td>
-                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
                             <td>{{ user.username }}</td>
+                            <td>{{ ticket.currentuser }}</td>
+                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+                            <td class="edit">
+                                <a href="{{ path('ticket_show', {'id': ticket.id}) }}">Détails</a>
+                            </td>
                             <td class="edit">
                                 <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">Modifier</a>
                             </td>
@@ -46,22 +52,23 @@
                 <thead>
                     <tr>
                         <th>Titre</th>
+                        <th>Personne assigné</th>
+                        <th>Origine du ticket</th>
                         <th>Envoyer le</th>
-                        <th>Pseudo</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for ticket in tickets %}
                 {% for user in users %}
-                <pre>
-                    {{ dump(user) }}
-                </pre>
-                    {% if ticket.user.first.id == user.id  %}
+                    {% if ticket.currentuser == app.user.username or ticket.user == app.user.username %}
+                    {% if ticket.user == user %}
                         <tr>
                             <td>{{ ticket.title }}</td>
-                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
                             <td>{{ user.username }}</td>
+                            <td>{{ ticket.currentuser }}</td>
+                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
                         </tr>
+                    {% endif %}
                     {% endif %}
                 {% endfor %}
                 {% endfor %}
