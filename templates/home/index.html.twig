@@ -7,7 +7,13 @@
         <div class="container_home">
             <div class="border-link_ticket">
                 <div class="link_ticket">
-                    <a href="{{ path('ticket_index') }}">Voir mes tickets en cours..</a>
+                    {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('ticket_index') }}">Voir mes tickets en cours..</a>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('ticket_index') }}">Voir tous les tickets</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="border-link_ticket">
