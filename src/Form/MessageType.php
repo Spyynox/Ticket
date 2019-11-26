@@ -19,14 +19,6 @@ class MessageType extends AbstractType
             ->add('text', TextareaType::class,  [
                 'label' => false,
             ])
-            // ->add('ticket', EntityType::class, [
-            //     'class' => Ticket::class,
-            //     'choice_label' => 'title'
-            // ])
-            // ->add('user', EntityType::class, [
-            //     'class' => User::class,
-            //     'choice_label' => 'username'
-            // ])
         ;
     }
 

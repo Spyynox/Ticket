@@ -120,7 +120,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        // not needed when using the "bcrypt" algorithm in security.yaml
+        
     }
 
     /**
@@ -128,8 +128,7 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        
     }
 
     public function __ToString()
@@ -160,7 +159,6 @@ class User implements UserInterface
     {
         if ($this->messages->contains($message)) {
             $this->messages->removeElement($message);
-            // set the owning side to null (unless already changed)
             if ($message->getUser() === $this) {
                 $message->setUser(null);
             }
@@ -191,7 +189,6 @@ class User implements UserInterface
     {
         if ($this->curenttickets->contains($curentticket)) {
             $this->curenttickets->removeElement($curentticket);
-            // set the owning side to null (unless already changed)
             if ($curentticket->getCurrentuser() === $this) {
                 $curentticket->setCurrentuser(null);
             }
@@ -222,7 +219,6 @@ class User implements UserInterface
     {
         if ($this->tickets->contains($ticket)) {
             $this->tickets->removeElement($ticket);
-            // set the owning side to null (unless already changed)
             if ($ticket->getUser() === $this) {
                 $ticket->setUser(null);
             }
@@ -230,9 +226,4 @@ class User implements UserInterface
 
         return $this;
     }
-
-    // public function __toString()
-    // {
-    //     return $this->getCurrentuser();
-    // }
 }

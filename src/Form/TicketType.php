@@ -21,12 +21,7 @@ class TicketType extends AbstractType
             ])
             ->add('user', EntityType::class,  [
                 'class' => User::class,
-                // 'label' => 'Assigné l\'utilisateur: ',
                 'choice_label' => 'username',
-                // 'empty_data' => null,
-                // 'required' => false,
-                // 'expanded' => true,
-                // 'multiple' => true,
             ])
         ;
     }
