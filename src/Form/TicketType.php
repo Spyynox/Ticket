@@ -19,15 +19,15 @@ class TicketType extends AbstractType
             ->add('title', TextType::class,  [
                 'label' => 'Titre',
             ])
-            // ->add('user', EntityType::class,  [
-            //     'class' => User::class,
-            //     // 'label' => 'Assigné l\'utilisateur: ',
-            //     'choice_label' => 'username',
-            //     // 'empty_data' => null,
-            //     // 'required' => false,
-            //     // 'expanded' => true,
-            //     // 'multiple' => true,
-            // ])
+            ->add('user', EntityType::class,  [
+                'class' => User::class,
+                // 'label' => 'Assigné l\'utilisateur: ',
+                'choice_label' => 'username',
+                // 'empty_data' => null,
+                // 'required' => false,
+                // 'expanded' => true,
+                // 'multiple' => true,
+            ])
         ;
     }
 

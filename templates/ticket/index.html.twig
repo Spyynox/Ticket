@@ -52,9 +52,8 @@
                 <thead>
                     <tr>
                         <th>Titre</th>
-                        <th>Personne assigné</th>
-                        <th>Origine du ticket</th>
                         <th>Envoyer le</th>
+                        <th>Message(s)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,9 +63,9 @@
                     {% if ticket.user == user %}
                         <tr>
                             <td>{{ ticket.title }}</td>
-                            <td>{{ user.username }}</td>
-                            <td>{{ ticket.currentuser }}</td>
-                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+                            <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td><td class="edit">
+                                <a href="{{ path('ticket_show', {'id': ticket.id}) }}">Détails</a>
+                            </td>
                         </tr>
                     {% endif %}
                     {% endif %}

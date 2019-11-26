@@ -3,24 +3,23 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class="container_home">
-        <div class="border-link_ticket">
-            <div class="link_ticket">
-                <a href="{{ path('ticket_index') }}">Voir mes tickets en cours..</a>
+    {% if app.user %}    
+        <div class="container_home">
+            <div class="border-link_ticket">
+                <div class="link_ticket">
+                    <a href="{{ path('ticket_index') }}">Voir mes tickets en cours..</a>
+                </div>
+            </div>
+            <div class="border-link_ticket">
+                <div class="link_ticket">
+                    <a href="{{ path('ticket_new') }}">Créer un ticket</a>
+                </div>
             </div>
         </div>
-        <div class="border-link_ticket">
-            <div class="link_ticket">
-                <a href="{{ path('ticket_new') }}">Créer un ticket</a>
-            </div>
-        </div>
-    </div>
-{% if is_granted('ROLE_ADMIN') %}
-    <div>fou</div>
-{% endif %}
+    {% endif %}
 
-{% if is_granted('ROLE_USER') %}
-    <div>gentil</div>
-{% endif %}
+    {% if not app.user %}
+        <div class="index_home">Pour créer des tickets et/ou voir vos tickets,  <a href="{{ path('app_login') }}">connectez-vous</a> ou <a href="{{ path('app_register') }}">inscrivez-vous!</a></div>
+    {% endif %}
 
 {% endblock %}

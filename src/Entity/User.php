@@ -135,6 +135,7 @@ class User implements UserInterface
     public function __ToString()
     {
         return $this->username;
+        return $this->getCurrentuser();
     }
 
     /**
@@ -229,4 +230,9 @@ class User implements UserInterface
 
         return $this;
     }
+
+    // public function __toString()
+    // {
+    //     return $this->getCurrentuser();
+    // }
 }
