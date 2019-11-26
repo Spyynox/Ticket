@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Ticket</h1>
 
-    <table class="table">
+    {# <table class="table">
         <tbody>
             <tr>
                 <th>Title</th>
@@ -16,23 +16,28 @@
                 <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
-    </table>
+    </table> #}
+
+    <div class="center">
+        <div>Titre: {{ ticket.title }}</div>
+        <div>Date de création: {{ ticket.createdAt ? ticket.createdAt|date('Y-m-d à H:i') : '' }}</div>
+    </div>
+    <br>
 
     {% for message in ticket.messages %}
-        <div>
-            <div>{{ message.user }}</div>
-            <div>{{ message.text }}</div>
-            <hr><br>
+        <div class="blog_message">
+            <div class="between">
+                <div>L'utilisateur <strong>{{ message.user }}</strong> a écrit :</div>
+                <div>{{ message.createdAt ? message.createdAt|date('d-m-Y à H:i') : ''  }}</div>
+            </div>
+            <div class="message_text">- {{ message.text }}</div>
         </div>
+        <br>
     {% endfor %}
+<div class="margin">
+    {{ include('message/_form.html.twig') }}
+</div>
 
-{{ include('message/_form.html.twig') }}
 
-
-
-    <a href="{{ path('ticket_index') }}">back to list</a>
-
-    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
-
-    {{ include('ticket/_delete_form.html.twig') }}
+    <a href="{{ path('ticket_index') }}">Retournez à vos tickets</a>
 {% endblock %}

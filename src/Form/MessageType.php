@@ -9,14 +9,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class MessageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('text')
-            // ->add('created_At')
+            ->add('text', TextareaType::class,  [
+                'label' => false,
+            ])
             // ->add('ticket', EntityType::class, [
             //     'class' => Ticket::class,
             //     'choice_label' => 'title'

@@ -91,6 +91,79 @@
 }
 
 .edit a {
-    background: #D4860B;
-    color: white !important;
+    color: #D4860B ;
+}
+
+.blog_message {
+    border: 1px solid;
+    width: 60%;
+    margin: auto;
+    height: 100px;
+}
+
+.blog_message div strong {
+    color: blue;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1%;
+}
+
+.between div:first-child {
+    margin-left: 3%;
+}
+
+.between div:last-child {
+    margin-right: 3%;
+}
+
+.message_text {
+    margin-left: 1%;
+}
+
+.margin {
+    margin-left: 30%;
+}
+
+textarea {
+  width: 500px;
+  height: 100px;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+  border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+  border-image: none;
+  border-radius: 6px 6px 6px 6px;
+  border-style: none solid solid none;
+  border-width: medium 1px 1px medium;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+  color: #555555;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  padding: 5px 8px;
+  transition: background-color 0.2s ease 0s;
+}
+
+
+textarea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+button {
+    background: #d3d3d3 !important;
+    color: #FFFFFF !important;
+}
+
+.center {
+    text-align: center;
+}
+
+.textMessage {
+    color: blue !important;
 }
