@@ -85,8 +85,7 @@
 
 
 .delete a {
-    background: #E12E1C;
-    color: white !important;
+    color: #E12E1C !important;
     height: 100px !important;
 }
 
@@ -166,4 +165,23 @@ button {
 
 .textMessage {
     color: blue !important;
+}
+
+.flexTicket_User-container {
+    display: flex;
+    justify-content: space-around;
+    width: 90vw;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.flexTicket_User {
+    border: 1px solid blue;
+    width: 30%;
+    margin-top: 5%;
+}
+
+.createdAt_Absolute {
+    margin-left: 60%;
+    font-size: 10px;
 }
